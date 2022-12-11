@@ -66,7 +66,12 @@ export class RestDataSource
   storeUserData(token: any, user: User): void
   {
     if (token) {
-      localStorage.setItem('id_token', 'Bearer ' + token);
+//      localStorage.setItem('id_token', 'Bearer ' + token);
+      if (location.hostname.includes("herokuapp.com")) {
+        localStorage.setItem('id_token', token);
+      } else {
+        localStorage.setItem('id_token', 'Bearer ' + token);
+      }
       localStorage.setItem('user', JSON.stringify(user));
       this.authToken = token;
     }

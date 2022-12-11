@@ -91,7 +91,7 @@ passport.use(strategy);
 // routing
 
 app.get('/api/version', (req, res) => {
-  res.status(200).json({version: "0.0.2"}); //dev
+  res.status(200).json({version: "0.0.3"}); //dev
 });
 
 app.use('/api/auth', authRouter);
