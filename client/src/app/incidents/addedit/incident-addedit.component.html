@@ -1,0 +1,118 @@
+<main class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-sm-8 offset-sm-1">
+      <div class="bg-danger mt-2 p-2 text-center text-white"
+           *ngIf='errorMessage != null'>
+        {{ errorMessage }}
+      </div>
+      <h1 *ngIf="mode === FormMode.ADD">Add Incident</h1>
+      <h1 *ngIf="mode === FormMode.EDIT">Edit Incident</h1>
+
+      <form autocomplete='off' #form='ngForm' (ngSubmit)='submit(form)'>
+        <div class="d-flex">
+          <div class="label">Id:</div>
+          <div id="uid" class="ml-2">{{incident.uid}}</div>
+        </div>
+        <div class="d-flex">
+          <div class="label">Updated At: </div><div class="ml-2">{{incident.updatedAt | date : 'fullDate'}}</div>
+        </div>
+
+        <div class="d-flex">
+          <div class="label">Customer:</div>
+          <div class="ml-2">Name: {{incident.customerInfo.displayName}}, Email {{incident.customerInfo.email}}</div>
+        </div>
+        <div class="d-flex">
+          <div class="label">Status:</div>
+          <div class="ml-2" *ngIf="mode === FormMode.ADD">{{incident.status}}</div>
+          <fieldset class="form-group ml-2" *ngIf="mode === FormMode.EDIT">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="status" id="statusNew" value="new" [(ngModel)]='incident.status' checked>
+              <label class="form-check-label" for="statusNew">
+                New
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="status" id="statusProgress" value="inProgress" [(ngModel)]='incident.status'>
+              <label class="form-check-label" for="statusProgress">
+                In Progress
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="status" id="statusDispatched" value="dispatched" [(ngModel)]='incident.status'>
+              <label class="form-check-label" for="statusDispatched">
+                Dispatched
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="statusClosed" value="closed" [(ngModel)]='incident.status'>
+              <label class="form-check-label" for="statusClosed">
+                Closed
+              </label>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="d-flex">
+          <div class="label">Priority:</div>
+          <div class="ml-2" *ngIf="mode === FormMode.EDIT">{{incident.priority}}</div>
+          <fieldset class="form-group ml-2" *ngIf="mode === FormMode.ADD">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="priority" id="priority1" value="prio1" [(ngModel)]='incident.priority' checked>
+              <label class="form-check-label" for="priority1">
+                Prio 1
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="priority" id="priority2" value="prio2" [(ngModel)]='incident.priority'>
+              <label class="form-check-label" for="priority2">
+                Prio 2
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="priority" id="priority3" value="prio3" [(ngModel)]='incident.priority'>
+              <label class="form-check-label" for="priority3">
+                Prio 3
+              </label>
+            </div>
+          </fieldset>
+        </div>
+
+        <fieldset class="form-group">
+          <label for="description" class="label">Description: <span class="required">*</span></label>
+          <textarea class="form-control"
+                 [(ngModel)]='incident.description'
+                 name='description' placeholder='Enter description'
+                id='description' required autofocus autocomplete='off' [disabled]="mode === FormMode.EDIT"></textarea>
+        </fieldset>
+
+        <fieldset class="form-group">
+          <label for="narrative" class="label">Narrative: <span class="required">*</span></label>
+          <textarea class="form-control"
+                    [(ngModel)]='incident.narrative'
+                    name='narrative' placeholder='Enter narrative'
+                    id='narrative' required autofocus autocomplete='off'></textarea>
+        </fieldset>
+
+        <fieldset class="form-group" *ngIf="incident.status === 'closed'">
+          <label for="resolution" class="label">Resolution: <span class="required">*</span></label>
+          <textarea class="form-control"
+                    [(ngModel)]='incident.resolution'
+                    name='resolution' placeholder='Enter resolution'
+                    id='resolution' required autofocus autocomplete='off'></textarea>
+        </fieldset>
+
+        <fieldset class="form-group text-right">
+          <button class='btn btn-primary m-1' type='submit' [disabled]="!form.valid">
+            <i class="fas fa-sign-in-alt"></i>
+            Submit
+          </button>
+          <button class='btn btn-secondary m-1' routerLink='/incidents'>
+            <i class="fas fa-undo"></i>
+            Cancel
+          </button>
+        </fieldset>
+
+      </form>
+    </div>
+  </div>
+</main>
