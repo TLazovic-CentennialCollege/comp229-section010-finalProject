@@ -42,7 +42,7 @@ function DashboardComponent_div_10_ng_container_1_div_46_Template(rf, ctx) { if 
 } if (rf & 2) {
     const incident_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](incident_r1.narrative);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](incident_r1.resolution);
 } }
 function DashboardComponent_div_10_ng_container_1_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerStart"](0);
@@ -548,10 +548,10 @@ class IncidentAddEditComponent {
                         this.router.navigateByUrl('/incidents');
                     }
                     else {
-                        this.errorMessage = 'Invalid registration. Please try again.';
+                        this.errorMessage = 'Invalid authentication. Please try again.';
                     }
                 }, error => {
-                    this.errorMessage = 'Invalid registration. Please try again.';
+                    this.errorMessage = 'Invalid authentication. Please try again.';
                 });
             }
             else {
@@ -560,10 +560,10 @@ class IncidentAddEditComponent {
                         this.router.navigateByUrl('/incidents');
                     }
                     else {
-                        this.errorMessage = 'Invalid registration. Please try again.';
+                        this.errorMessage = 'Invalid authentication. Please try again.';
                     }
                 }, error => {
-                    this.errorMessage = 'Invalid registration. Please try again.';
+                    this.errorMessage = 'Invalid authentication. Please try again.';
                 });
             }
         }

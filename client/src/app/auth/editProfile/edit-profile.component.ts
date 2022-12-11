@@ -34,11 +34,11 @@ export class EditProfileComponent implements OnInit {
             this.authService.storeUserData(null, data.user); // no token returned
             this.router.navigateByUrl('/incidents');
           } else {
-            this.errorMessage = 'Invalid registration. Please try again.';
+            this.errorMessage = 'Invalid authentication. Please try again.';
           }
         },
         error => {
-          this.errorMessage = 'Invalid registration. Please try again.';
+          this.errorMessage = 'Invalid authentication. Please try again.';
         }
       );
     }

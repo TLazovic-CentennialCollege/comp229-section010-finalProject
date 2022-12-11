@@ -88,10 +88,10 @@ class EditProfileComponent {
                     this.router.navigateByUrl('/incidents');
                 }
                 else {
-                    this.errorMessage = 'Invalid registration. Please try again.';
+                    this.errorMessage = 'Invalid authentication. Please try again.';
                 }
             }, error => {
-                this.errorMessage = 'Invalid registration. Please try again.';
+                this.errorMessage = 'Invalid authentication. Please try again.';
             });
         }
         else {
