@@ -294,6 +294,10 @@ const PROTOCOL = 'http';
 const PORT = 3500;
 class RestDataSource {
     constructor(http, jwtService) {
+        // this.user = new User();
+        // this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
+        // this.baseUrl = `${location.protocol}//${location.hostname}/api/`;
+        //this.baseUrl = `https://comp229section010finalproject.herokuapp.com/api/`;
         this.http = http;
         this.jwtService = jwtService;
         this.httpOptions = {
@@ -303,10 +307,12 @@ class RestDataSource {
                 'Access-control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             })
         };
-        // this.user = new User();
-        // this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
-        // this.baseUrl = `${location.protocol}//${location.hostname}/api/`;
-        this.baseUrl = `https://comp229section010finalproject.herokuapp.com/api/`;
+        if (location.hostname.includes("herokuapp.com")) {
+            this.baseUrl = `${location.protocol}//${location.hostname}/api/`;
+        }
+        else {
+            this.baseUrl = `${location.protocol}//${location.hostname}:${PORT}/api/`;
+        }
     }
     // getBooks(): Observable<Book[]>
     // {
