@@ -32,8 +32,8 @@ export class RestDataSource
   {
     // this.user = new User();
     // this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
-    this.baseUrl = `${location.protocol}://${location.hostname}/api/`;
-    // this.baseUrl = `https://comp229-f2020-week10.herokuapp.com/api/`;
+    // this.baseUrl = `${location.protocol}//${location.hostname}/api/`;
+    this.baseUrl = `https://comp229section010finalproject.herokuapp.com/api/`;
   }
 
   // getBooks(): Observable<Book[]>
@@ -87,11 +87,13 @@ export class RestDataSource
 
   updateUser(user: User): Observable<any>
   {
+    this.loadToken();
     return this.http.put<any>(this.baseUrl + 'auth/update', user, this.httpOptions);
   }
 
   getIncidents(): Observable<Incident[]>
   {
+    this.loadToken();
     return this.http.get<Incident[]>(this.baseUrl + 'incidents', this.httpOptions);
   }
 
