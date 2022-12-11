@@ -20,12 +20,12 @@ function requireAuth(req, res, next)
 }
 
 /* GET Route to get incidents */
-router.get('/', incidentController.getIncidents);
+router.get('/',passport.authenticate('jwt', {session: false}) , incidentController.getIncidents);
 
 // /* POST Route for creating incident */
 // router.post('/add', passport.authenticate('jwt', {session: false}), incidentController.addIncident);
 router.post('/create', passport.authenticate('jwt', {session: false}), incidentController.create);
-router.post('/create', incidentController.create);
+// router.post('/create', incidentController.create);
 
 // /* POST Route for updating  incident */
 router.put('/update', passport.authenticate('jwt', {session: false}), incidentController.update);

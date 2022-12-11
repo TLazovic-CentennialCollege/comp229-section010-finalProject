@@ -31,7 +31,8 @@ export class RestDataSource
     private jwtService: JwtHelperService)
   {
     // this.user = new User();
-    this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
+    // this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
+    this.baseUrl = `${location.protocol}://${location.hostname}/api/`;
     // this.baseUrl = `https://comp229-f2020-week10.herokuapp.com/api/`;
   }
 
@@ -91,7 +92,7 @@ export class RestDataSource
 
   getIncidents(): Observable<Incident[]>
   {
-    return this.http.get<Incident[]>(this.baseUrl + 'incidents');
+    return this.http.get<Incident[]>(this.baseUrl + 'incidents', this.httpOptions);
   }
 
   createIncident(incident: Incident): Observable<Incident>
