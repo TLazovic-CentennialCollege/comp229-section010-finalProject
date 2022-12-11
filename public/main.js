@@ -304,8 +304,9 @@ class RestDataSource {
             })
         };
         // this.user = new User();
-        this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
-        // this.baseUrl = `https://comp229-f2020-week10.herokuapp.com/api/`;
+        // this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
+        // this.baseUrl = `${location.protocol}//${location.hostname}/api/`;
+        this.baseUrl = `https://comp229section010finalproject.herokuapp.com/api/`;
     }
     // getBooks(): Observable<Book[]>
     // {
@@ -344,10 +345,12 @@ class RestDataSource {
         return !this.jwtService.isTokenExpired(this.authToken);
     }
     updateUser(user) {
+        this.loadToken();
         return this.http.put(this.baseUrl + 'auth/update', user, this.httpOptions);
     }
     getIncidents() {
-        return this.http.get(this.baseUrl + 'incidents');
+        this.loadToken();
+        return this.http.get(this.baseUrl + 'incidents', this.httpOptions);
     }
     createIncident(incident) {
         this.loadToken();
